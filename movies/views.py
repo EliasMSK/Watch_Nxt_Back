@@ -92,3 +92,7 @@ def delete_movie(request, pk):
     movie.save()
 
     return Response({'message': 'Contenido eliminado'}, status=status.HTTP_200_OK)
+
+
+
+# Chica de molle / agua de puquio
