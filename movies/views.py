@@ -8,7 +8,7 @@ from .utils import get_all_movies, search_movies
 from .permissions import IsAdmin, IsWorker
 
 @api_view(['GET'])
-@permission_classes([IsWorker])
+#@permission_classes([IsWorker])
 def get_all_movies_api(request):
     movies = Movie.objects.filter(is_active=True)
     serialized_movies = MovieSerializer(movies, many=True).data
@@ -32,7 +32,7 @@ def get_all_movies_api(request):
 
 
 @api_view(['GET'])
-@permission_classes([IsWorker])
+#@permission_classes([IsWorker])
 def search_movies_api(request):
     query = request.query_params.get('query', '')
     if query:
@@ -43,7 +43,7 @@ def search_movies_api(request):
 
 
 @api_view(['POST'])
-@permission_classes([IsAdmin])
+#@permission_classes([IsAdmin])
 def create_movie(request):
     title = request.data.get('title')
     description = request.data.get('description')
@@ -64,7 +64,7 @@ def create_movie(request):
 
 
 @api_view(['PUT'])
-@permission_classes([IsAdmin])
+#@permission_classes([IsAdmin])
 def update_movie(request, pk):
     try:
         movie = Movie.objects.get(pk=pk, is_active=True)
@@ -81,7 +81,7 @@ def update_movie(request, pk):
 
 
 @api_view(['DELETE'])
-@permission_classes([IsAdmin])
+#@permission_classes([IsAdmin])
 def delete_movie(request, pk):
     try:
         movie = Movie.objects.get(pk=pk, is_active=True)
@@ -92,7 +92,3 @@ def delete_movie(request, pk):
     movie.save()
 
     return Response({'message': 'Contenido eliminado'}, status=status.HTTP_200_OK)
-
-
-
-# Chica de molle / agua de puquio
