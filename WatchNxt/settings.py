@@ -40,10 +40,12 @@ INSTALLED_APPS = [
     'accounts',
     'users',
     'movies',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -139,3 +141,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Durante desarrollo, permite todas las conexiones
+CORS_ALLOW_ALL_ORIGINS = True
+
+# O si prefieres ser más específico:
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200",  # Tu frontend de Angular
+]
+
+# Si necesitas enviar cookies (para autenticación por sesiones):
+CORS_ALLOW_CREDENTIALS = True
